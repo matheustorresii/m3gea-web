@@ -12,6 +12,10 @@ const Button = styled.button`
   background-color: ${(props) => props.primary ? "#000000" : "#E8EDFF"};
   pointer-events: ${props => props.disabled ? "none" : "all"};
   opacity: ${props => props.disabled ? 0.7 : 1};
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
 export default Button

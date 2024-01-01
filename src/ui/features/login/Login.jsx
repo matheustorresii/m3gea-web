@@ -1,20 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
+import * as S from './styles'
 import Button from "../../components/Button/index";
 import Input from "../../components/Input/index";
-import * as S from './styles'
 import Separator from "../../components/Separator";
 
 export default function Login() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   function didClickLogIn() {
     console.log(email, password)
-    console.log("log in")
   }
 
   function didClickSignUp() {
-    console.log("sign up")
+    navigate('/create-account')
   }
 
   return (

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import * as S from './styles'
-import Button from "../../components/Button/index";
-import Input from "../../components/Input/index";
-import Separator from "../../components/Separator";
+import Button from "../../components/button";
+import Input from "../../components/input";
+import Separator from "../../components/separator";
+import Logo from "../../components/logo/";
 
 export default function Login() {
   const navigate = useNavigate()
@@ -12,6 +13,7 @@ export default function Login() {
 
   function didClickLogIn() {
     console.log(email, password)
+    navigate('/home')
   }
 
   function didClickSignUp() {
@@ -21,11 +23,11 @@ export default function Login() {
   return (
     <S.Main>
       <S.LogoContainer>
-        <label style={{color: "#FFFFFF"}}>M3</label>
+        <Logo height={150} primary="false"/>
       </S.LogoContainer>
 
       <S.ContentContainer>
-        <label style={{color: "#000000"}}>M3</label>
+        <Logo height={80} primary="true"/>
 
         <S.FormContainer>
           <S.LoginTitle>Login</S.LoginTitle>
@@ -36,7 +38,7 @@ export default function Login() {
           <Separator size={12} />
           <Input type="password" hint="Password" value={password} setValue={setPassword}/>
           <Separator size={24} />
-          <Button primary="true" onClick={didClickLogIn} disabled={email == '' || password == ''}>Log In</Button>
+          <Button primary="true" onClick={didClickLogIn} disabled={email === '' || password === ''}>Log In</Button>
           <Separator size={8} />
           <S.ForgotPassword>Did you forget your password?</S.ForgotPassword>
           <Separator size={44} />

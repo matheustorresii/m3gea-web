@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import * as S from './styles.jsx'
-import Button from "../../components/Button/index";
-import Input from "../../components/Input/index";
-import Separator from "../../components/Separator";
+import Button from "../../components/button";
+import Input from "../../components/input";
+import Separator from "../../components/separator";
+import Logo from "../../components/logo";
 
 export default function Signup() {
   const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function Signup() {
 
   return(
     <S.Main>
-      <label style={{color: "#000000"}}>M3</label>
+      <Logo height={80} primary="true"/>
 
       <S.FormContainer>
         <S.CreateYourAccountTitle>Create your account</S.CreateYourAccountTitle>
@@ -33,7 +34,7 @@ export default function Signup() {
         <Separator size={12} />
         <Input type="password" hint="Password" value={password} setValue={setPassword}/>
         <Separator size={8} />
-        <Button primary="true" onClick={didClickSignUp} disabled={email == '' || password == '' || name == ''}>Continue</Button>
+        <Button primary="true" onClick={didClickSignUp} disabled={email === '' || password === '' || name === ''}>Continue</Button>
         <Separator size={8} />
         <S.AlreadyHaveAnAccount onClick={didClickLogIn}>Already have an account? <S.LogIn>Log in</S.LogIn></S.AlreadyHaveAnAccount>
       </S.FormContainer>

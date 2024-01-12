@@ -6,7 +6,7 @@ export default function Input({ type, hint, placeholder, value, setValue }) {
 
   return (
     <Main>
-      <Placeholder focused={isFocused || (value !== '')}>{hint}</Placeholder>
+      {hint != undefined && <Placeholder focused={isFocused || (value !== '')}>{hint}</Placeholder>}
       <Textfield 
         type={type}
         value={value}

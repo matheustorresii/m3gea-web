@@ -23,7 +23,7 @@ const MainContainer = styled.div`
 `
 
 const Header = styled.div`
-  padding: 16px;
+  margin: 16px 8px 0px 16px;
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -39,6 +39,7 @@ const ProfileContainer = styled.div`
 `
 
 const ProfileName = styled.label`
+  margin-left: 8px;
   font-size: 16px;
   font-weight: 700;
   color: #0A1629;

@@ -7,8 +7,9 @@ const Main = styled.div`
   border-radius: 8px;
   margin: 16px 8px;
   width: 100%;
-  padding: 16px;
+  padding: 0px 16px 16px 16px;
   overflow: hidden;
+  position: relative;
 `
 
 const ChatContainer = styled.div`

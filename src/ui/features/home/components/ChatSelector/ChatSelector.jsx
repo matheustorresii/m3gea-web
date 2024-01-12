@@ -1,6 +1,7 @@
 import React from "react";
 import Separator from '../../../../components/separator'
 import { FaPlus } from 'react-icons/fa6'
+import * as Loading from '../../../../components/loading'
 import * as S from './styles'
 
 export default function TabContainer() {

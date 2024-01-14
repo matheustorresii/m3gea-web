@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from 'react-router-dom'
 import Separator from '../../../../components/separator'
 import { FaPlus } from 'react-icons/fa6'
 import * as Loading from '../../../../components/loading'
@@ -7,6 +8,7 @@ import * as S from './styles'
 import { postData } from '../../../../../domain/service/service'
 
 export default function TabContainer({ token, chats, setChats, selectedChat, setSelectedChat, chatLoading }) {
+  const navigate = useNavigate()
   const { showErrorToast } = useContext(ToastContext)
   const [loading, setLoading] = useState(false)
 
@@ -27,7 +29,11 @@ export default function TabContainer({ token, chats, setChats, selectedChat, set
         setSelectedChat(result.id)
         setChats([result, ...chats])
       } catch (error) {
-        showErrorToast('It was not possible to create a new chat. Try again later!')
+        if(error.response.status === 401) {
+          navigate('/')
+        } else {
+          showErrorToast('It was not possible to create a new chat. Try again later!')
+        }
       } finally {
         setLoading(false)
       }

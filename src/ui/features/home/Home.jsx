@@ -38,7 +38,11 @@ export default function Home() {
         )
         setChats(result.reverse())
       } catch (error) {
-        showErrorToast('It was not possible to get your chats. Try again later!')
+        if(error.response.status === 401) {
+          navigate('/')
+        } else {
+          showErrorToast('It was not possible to get your chats. Try again later!')
+        }
       } finally {
         setLoading(false)
       }
@@ -60,7 +64,11 @@ export default function Home() {
           setMessages([])
         }
       } catch (error) {
-        showErrorToast('It was not possible to get the history of your chat. Try again later!')
+        if(error.response.status === 401) {
+          navigate('/')
+        } else {
+          showErrorToast('It was not possible to get the history of your chat. Try again later!')
+        }
       } finally {
         setChatLoading(false)
       }

@@ -12,7 +12,7 @@ const Placeholder = styled.label`
   margin: 8px;
   color: #4D4D4D;
   pointer-events: none;
-  margin: ${(props) => props.focused ? '-54px 8px 0px 8px' : '16px'};
+  margin: ${(props) => props.focused === 'true' ? '-54px 8px 0px 8px' : '16px'};
   background-color: white;
   transition: 0.25s;
   padding: 0px 4px;

@@ -19,6 +19,7 @@ export default function TabContainer({ didClickLogout }) {
       </S.Selector>
 
       <S.Add>
+        <S.WipTagContainer><S.WipTag>W.I.P.</S.WipTag></S.WipTagContainer>
         <FaPlus color="#545454"/>
       </S.Add>
 

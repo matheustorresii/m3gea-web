@@ -40,6 +40,30 @@ const Add = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+`
+
+const WipTagContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.5s;
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
+const WipTag = styled.label`
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #e04e46;
+  padding: 0px 8px;
+  border-radius: 2px;
+  color: white;
+  font-size: 12px;
 `
 
 const Logout = styled.div`
@@ -62,6 +86,8 @@ export {
   Main,
   Selector,
   SelectorTitle,
+  WipTagContainer,
+  WipTag,
   Add,
   Logout,
   LogoutTitle

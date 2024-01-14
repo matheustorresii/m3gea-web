@@ -10,7 +10,7 @@ export default function Input({ type, hint, placeholder, value, setValue, onKeyD
 
   return (
     <Main>
-      {hint != undefined && <Placeholder focused={focused()}>{hint}</Placeholder>}
+      {hint != undefined && <Placeholder focused={focused().toString()}>{hint}</Placeholder>}
       <Textfield 
         type={type}
         value={value}

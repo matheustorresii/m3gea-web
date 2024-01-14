@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom'
 import { FaPaperPlane } from 'react-icons/fa6'
 import Input from '../../../../components/input'
 import Separator from '../../../../components/separator'
@@ -8,6 +9,7 @@ import { postData } from '../../../../../domain/service/service'
 import { ToastContext } from '../../../../../App'
 
 export default function Chat({ token, messages, setMessages, selectedChat }) {
+  const navigate = useNavigate()
   const { showErrorToast } = useContext(ToastContext)
   const endOfChatRef = useRef(null)
   const [text, setText] = useState('')
@@ -36,7 +38,11 @@ export default function Chat({ token, messages, setMessages, selectedChat }) {
         )
         setMessages([...messages, ...result])
       } catch (error) {
-        showErrorToast('It was not possible to send your message. Try again later!')
+        if(error.response.status === 401) {
+          navigate('/')
+        } else {
+          showErrorToast('It was not possible to send your message. Try again later!')
+        }
       } finally {
         setLoading(false)
       }
@@ -56,7 +62,7 @@ export default function Chat({ token, messages, setMessages, selectedChat }) {
       {selectedChat === 0 && <S.EmptyChatLabel>Select or create a chat</S.EmptyChatLabel>}
       <S.ChatContainer>
         {messages.map((message, index) => (
-          <S.MessageContainer>
+          <S.MessageContainer key={index}>
             <Separator size={16}/>
             <S.MessageTitle>{message.company_name}</S.MessageTitle>
             <Separator size={4}/>

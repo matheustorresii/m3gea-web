@@ -44,6 +44,7 @@ const MessageTitle = styled.label`
 
 const MessageContent = styled.label`
   font-size: 14px;
+  white-space: pre-line;
 `
 
 const MessageSeparator = styled.div`

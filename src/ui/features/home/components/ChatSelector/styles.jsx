@@ -7,7 +7,6 @@ const Main = styled.div`
   border-radius: 8px;
   margin: 16px 8px;
   width: 280px;
-  overflow: scroll;
   position: relative;
 `
 
@@ -34,6 +33,18 @@ const HeaderAdd = styled.div`
   justify-content: center;
   background-color: black;
   cursor: pointer;
+`
+
+const HeaderSeparator = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #475E6B;
+`
+
+const ChatScrollView = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 `
 
 const ChatContainer = styled.div`
@@ -75,6 +86,8 @@ export {
   Header,
   HeaderTitle,
   HeaderAdd,
+  HeaderSeparator,
+  ChatScrollView,
   ChatContainer,
   ChatTitle,
   ChatSelector

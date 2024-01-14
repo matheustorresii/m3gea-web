@@ -37,7 +37,7 @@ const Header = styled.div`
 const ProfileContainer = styled.div`
   background: white;
   border-radius: 8px;
-  padding: 16px 8px;
+  padding: 8px 24px;
   display: flex;
   align-items: center;
   justify-content: center;

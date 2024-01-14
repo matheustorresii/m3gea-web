@@ -30,7 +30,7 @@ export default function Login() {
         const result = await postData('auth/signin', 
           {
             'password': password,
-            'email': email
+            'email': email.toLowerCase()
           }
         )
         navigate('/home', {state: { token: result.token }})
@@ -83,8 +83,6 @@ export default function Login() {
           <Button primary="true" onClick={didClickLogIn} disabled={validateForm()}>
             {loading ? <Loading.Container size={16}/> : 'Log In'}
           </Button>
-          <Separator size={8} />
-          <S.ForgotPassword>Did you forget your password?</S.ForgotPassword>
           <Separator size={44} />
           
           <S.SignUpContainer>

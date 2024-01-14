@@ -55,14 +55,16 @@ export default function TabContainer({ token, chats, setChats, selectedChat, set
           <FaPlus color="white"/>
         </S.HeaderAdd>
       </S.Header>
-
-      {chats.map((chat) => (
-        <S.ChatContainer key={chat.id} onClick={() => didClickOnChat(chat.id)}>
-          {selectedChat === chat.id && <S.ChatSelector/>}
-          <S.ChatTitle>{chat.name}</S.ChatTitle>
-          {selectedChat === chat.id && <S.ChatSelector/>}
-        </S.ChatContainer>
-      ))}
+      <S.HeaderSeparator/>
+      <S.ChatScrollView>
+        {chats.map((chat) => (
+          <S.ChatContainer key={chat.id} onClick={() => didClickOnChat(chat.id)}>
+            {selectedChat === chat.id && <S.ChatSelector/>}
+            <S.ChatTitle>{chat.name}</S.ChatTitle>
+            {selectedChat === chat.id && <S.ChatSelector/>}
+          </S.ChatContainer>
+        ))}
+      </S.ChatScrollView>
     </S.Main>
   )
 }

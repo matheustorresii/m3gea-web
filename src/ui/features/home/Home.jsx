@@ -23,11 +23,17 @@ export default function Home() {
 
   useEffect(() => {
     getAllChats()
+    getUser()
   }, [])
 
   useEffect(() => {
     getChatMessages()
   }, [selectedChat])
+
+  function getUser() {
+    const user = JSON.parse(atob(token.split('.')[1]))
+    return user.company_name
+  }
 
   function getAllChats() {
     setLoading(true)
@@ -95,7 +101,7 @@ export default function Home() {
         <S.Header>
           <S.ProfileContainer>
             <FaUser/>
-            <S.ProfileName>Matheus Torres</S.ProfileName>
+            <S.ProfileName>{getUser()}</S.ProfileName>
           </S.ProfileContainer>
         </S.Header>
 

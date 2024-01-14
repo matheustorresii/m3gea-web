@@ -21,6 +21,7 @@ export default function Chat({ token, messages, setMessages, selectedChat }) {
 
   function didSendMessage() {
     if (loading) return
+    if (text === '') return
     setText('')
     setLoading(true)
     postMessage()

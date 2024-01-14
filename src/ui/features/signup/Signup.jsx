@@ -35,7 +35,7 @@ export default function Signup() {
           {
             'company_name': name,
             'password': password,
-            'email': email
+            'email': email.toLowerCase()
           }
         )
         navigate('/', { state: { defaultEmail: email }})
@@ -71,7 +71,7 @@ export default function Signup() {
       <S.FormContainer>
         <S.CreateYourAccountTitle>Create your account</S.CreateYourAccountTitle>
         <Separator size={16} />
-        <Input type="text" hint="Name" value={name} setValue={setName} onKeyDown={onKeyDown}/>
+        <Input type="text" hint="Company Name" value={name} setValue={setName} onKeyDown={onKeyDown}/>
         <Separator size={12} />
         <Input type="email" hint="Email" value={email} setValue={setEmail} onKeyDown={onKeyDown}/>
         <Separator size={12} />

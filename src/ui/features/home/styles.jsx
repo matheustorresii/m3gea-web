@@ -6,14 +6,19 @@ const Main = styled.div`
   height: 100vh;
   width: 100vw;
   background: #d4d4d4;
+  position: relative;
 `
 
-const Container = styled.div`
+const LoadingContainer = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: white;
-  border-radius: 8px;
-  margin: 16px 8px;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
 `
 
 const MainContainer = styled.div`
@@ -54,6 +59,7 @@ const PageContainer = styled.div`
 
 export {
   Main,
+  LoadingContainer,
   PageContainer,
   MainContainer,
   Header,

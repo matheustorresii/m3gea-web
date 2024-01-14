@@ -1,37 +1,75 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaPaperPlane } from 'react-icons/fa6'
 import Input from '../../../../components/input'
 import Separator from '../../../../components/separator'
 import * as Loading from '../../../../components/loading'
 import * as S from './styles'
-import App from './../../../../../App'
+import { postData } from '../../../../../domain/service/service'
+import { ToastContext } from '../../../../../App'
 
-export default function Chat() {
+export default function Chat({ token, messages, setMessages, selectedChat }) {
+  const { showErrorToast } = useContext(ToastContext)
+  const endOfChatRef = useRef(null)
   const [text, setText] = useState('')
-  const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    endOfChatRef.current?.scrollIntoView({ behavior: 'smooth'})
+  }, [messages])
+
   function didSendMessage() {
+    if (loading) return
+    setText('')
     setLoading(true)
+    postMessage()
+  }
+
+  function postMessage() {
+    const request = async () => {
+      try {
+        const result = await postData('chat', 
+          {
+            'content': text,
+            'chatroom_id': selectedChat
+          },
+          token
+        )
+        setMessages([...messages, ...result])
+      } catch (error) {
+        showErrorToast('It was not possible to send your message. Try again later!')
+      } finally {
+        setLoading(false)
+      }
+    }
+    request()
+  }
+
+  function onKeyDown(event) {
+    if (event.key === 'Enter') {
+      didSendMessage()
+    }
   }
 
   return (
     <S.Main>
       {loading && <Loading.Container/>}
-
+      {selectedChat === 0 && <S.EmptyChatLabel>Select or create a chat</S.EmptyChatLabel>}
       <S.ChatContainer>
-        <S.MessageContainer>
-          <Separator size={16}/>
-          <S.MessageTitle>System</S.MessageTitle>
-          <Separator size={4}/>
-          <S.MessageContent>Pra fazer um balão de cachorro é só você pi pi pi pi po po po po pi pi pi e um texto muito grande aqui ta ligado só pra testar se ele ta quebrando a linha mesmo porque o layout pode quebrar e pipi pi pi pi pop o popo um texto GIGANTESCO aqui ficaria manero hahahaha piadas humnor maneroPra fazer um balão de cachorro é só você pi pi pi pi po po po po pi pi pi e um texto muito grande aqui ta ligado só pra testar se ele ta quebrando a linha mesmo porque o layout pode quebrar e pipi pi pi pi pop o popo um texto GIGANTESCO aqui ficaria manero hahahaha piadas humnor maneroPra fazer um balão de cachorro é só você pi pi pi pi po po po po pi pi pi e um texto muito grande aqui ta ligado só pra testar se ele ta quebrando a linha mesmo porque o layout pode quebrar e pipi pi pi pi pop o popo um texto GIGANTESCO aqui ficaria manero hahahaha piadas humnor maneroPra fazer um balão de cachorro é só você pi pi pi pi po po po po pi pi pi e um texto muito grande aqui ta ligado só pra testar se ele ta quebrando a linha mesmo porque o layout pode quebrar e pipi pi pi pi pop o popo um texto GIGANTESCO aqui ficaria manero hahahaha piadas humnor maneroPra fazer um balão de cachorro é só você pi pi pi pi po po po po pi pi pi e um texto muito grande aqui ta ligado só pra testar se ele ta quebrando a linha mesmo porque o layout pode quebrar e pipi pi pi pi pop o popo um texto GIGANTESCO aqui ficaria manero hahahaha piadas humnor manero</S.MessageContent>
-          <Separator size={16}/>
-          <S.MessageSeparator/>
-        </S.MessageContainer>
+        {messages.map((message, index) => (
+          <S.MessageContainer>
+            <Separator size={16}/>
+            <S.MessageTitle>{message.company_name}</S.MessageTitle>
+            <Separator size={4}/>
+            <S.MessageContent>{message.content}</S.MessageContent>
+            <Separator size={16}/>
+            {index !== messages.length-1 && <S.MessageSeparator/>}
+          </S.MessageContainer>
+        ))}
+        <div ref={endOfChatRef}/>
       </S.ChatContainer>
 
       <S.InputContainer>
-        <Input type="text" placeholder="Message" value={text} setValue={setText}/>
+        <Input type="text" placeholder="Message" value={text} setValue={setText} onKeyDown={onKeyDown}/>
         <S.InputButton onClick={didSendMessage} >
           <FaPaperPlane color="#475E6B"/>
         </S.InputButton>

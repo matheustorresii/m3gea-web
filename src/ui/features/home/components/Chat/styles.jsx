@@ -12,6 +12,19 @@ const Main = styled.div`
   position: relative;
 `
 
+const EmptyChatLabel = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 18px;
+  color: #475E6B;
+`
+
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,6 +73,7 @@ const InputButton = styled.div`
 
 export {
   Main,
+  EmptyChatLabel,
   ChatContainer,
   InputContainer,
   InputButton,

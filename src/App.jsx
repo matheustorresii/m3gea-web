@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./common/navigation/router";
 import Error from "./ui/components/error";
 
-const ErrorContext = createContext()
+export const ToastContext = createContext({ showErrorToast: (message) => {} })
 
 function App() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -15,14 +15,14 @@ function App() {
 
     setTimeout(() => {
       setToastVisible(false)
-    }, 3000);
+    }, 5000);
   }
 
   return (
-    <ErrorContext.Provider value={showErrorToast}>
+    <ToastContext.Provider value={{ showErrorToast }}>
       <RouterProvider router={router}/>
       {toastVisible && <Error message={toastMessage}/>}
-    </ErrorContext.Provider>
+    </ToastContext.Provider>
   );
 }
 

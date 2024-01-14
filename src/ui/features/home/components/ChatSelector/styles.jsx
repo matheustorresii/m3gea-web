@@ -7,6 +7,8 @@ const Main = styled.div`
   border-radius: 8px;
   margin: 16px 8px;
   width: 280px;
+  overflow: scroll;
+  position: relative;
 `
 
 const Header = styled.div`
@@ -14,6 +16,7 @@ const Header = styled.div`
   flex-direction: row;
   align-items: center;
   margin: 16px;
+  background: white;
 `
 
 const HeaderTitle = styled.label`
@@ -54,6 +57,8 @@ const ChatTitle = styled.label`
   margin: 4px;
   width: 100%;
   cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 const ChatSelector = styled.div`

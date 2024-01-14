@@ -4,9 +4,9 @@ import Separator from '../../../../components/separator'
 import { FaLayerGroup, FaPlus, FaRightToBracket } from 'react-icons/fa6'
 import * as S from './styles'
 
-export default function TabContainer() {
+export default function TabContainer({ didClickLogout }) {
   function onClickLogout() {
-    console.log('logout')
+    didClickLogout()
   }
 
   return (
